@@ -1,4 +1,4 @@
-# Exploring Power Outages
+# Power Outage Exploration
 
 By Kyle Flores
 
@@ -56,6 +56,8 @@ Step 5: Check the following columns for values of 0 and then replacing them with
 
 The first few rows of the cleaned dataframe are as follows:
 
+<div style="overflow-x: auto; white-space: nowrap;">
+
 | Index | YEAR | MONTH | U.S._STATE | NERC.REGION | CLIMATE.REGION     | ANOMALY.LEVEL | CAUSE.CATEGORY      | OUTAGE.START         | OUTAGE.RESTORATION   | OUTAGE.DURATION | DEMAND.LOSS.MW | CUSTOMERS.AFFECTED | TOTAL.PRICE | TOTAL.SALES | TOTAL.CUSTOMERS | POPPCT_URBAN | POPDEN_URBAN | AREAPCT_URBAN |
 |-------|------|-------|------------|-------------|---------------------|---------------|---------------------|----------------------|----------------------|----------------|---------------|-------------------|-------------|------------|----------------|--------------|--------------|--------------|
 | 6     | 2011 | 7     | Minnesota  | MRO         | East North Central  | -0.3          | severe weather     | 2011-07-01 17:00:00  | 2011-07-03 20:00:00  | 3060.0         | NaN           | 70000.0           | 9.28        | 6562520    | 2595696        | 73.27        | 2279         | 2.14         |
@@ -63,6 +65,9 @@ The first few rows of the cleaned dataframe are as follows:
 | 8     | 2010 | 10    | Minnesota  | MRO         | East North Central  | -1.5          | severe weather     | 2010-10-26 20:00:00  | 2010-10-28 22:00:00  | 3000.0         | NaN           | 70000.0           | 8.15        | 5222116    | 2586905        | 73.27        | 2279         | 2.14         |
 | 9     | 2012 | 6     | Minnesota  | MRO         | East North Central  | -0.1          | severe weather     | 2012-06-19 04:30:00  | 2012-06-20 23:00:00  | 2550.0         | NaN           | 68200.0           | 9.19        | 5787064    | 2606813        | 73.27        | 2279         | 2.14         |
 | 10    | 2015 | 7     | Minnesota  | MRO         | East North Central  | 1.2           | severe weather     | 2015-07-18 02:00:00  | 2015-07-19 07:00:00  | 1740.0         | 250.0         | 250000.0          | 10.43       | 5970339    | 2673531        | 73.27        | 2279         | 2.14         |
+
+</div>
+
 
 ### Exploratory Data Analysis
 
