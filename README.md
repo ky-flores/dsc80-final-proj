@@ -138,4 +138,113 @@ The following data is a grouping by climate region and aggregated by the mean of
 | Northeast          |           3330.52 |           981.36 |             175359   |
 | East North Central |           5391.4  |           633.9  |             149816   |
 
-Grouping by climate region informs us of the characteristics of each region. 
+Grouping by climate region informs us of the characteristics of each region. For example, the East North Central tends to have the longest outages while the West tends to have the most customers affected.
+
+Other methods of displaying data characteristics is by a pivot table.
+
+The pivot table below shows the mean amount of customers affected and outage duraton for each outage cause category.
+
+| CAUSE.CATEGORY                |   CUSTOMERS.AFFECTED |   OUTAGE.DURATION |
+|:------------------------------|---------------------:|------------------:|
+| equipment failure             |            105451    |           1850.56 |
+| fuel supply emergency         |                 1    |          13484    |
+| intentional attack            |             18753.4  |            521.93 |
+| islanding                     |              7232.72 |            200.55 |
+| public appeal                 |             15999.4  |           1468.45 |
+| severe weather                |            190972    |           3899.71 |
+| system operability disruption |            211066    |            747.09 |
+
+Looking at the pivot table above, we learn that system operability disruptions have the highest average amount of customers affected, while having shorter outage durations. Moreover, islandings affect less customers and have shorter durations.
+
+## Assesment of Missingness
+
+Many columns within the dataset contain missing values. However, a column that is likely to be NMAR is DEMAND.LOSS.MW because of the lack of necessity in reporting minor changes. The missingness could be due to very small or undetectable changes that were not recorded because the change was not noticeable, leading to missing values.
+
+To determine if the data for DEMAND.LOSS.MW is MAR, additional data of the individual utility companies’ reporting policies to then perform missingness analysis and assess whether or not there is a correlation between certain policies and the amount of null values.
+
+### Missingness Dependency
+
+In order to assess the dependency of missingness, the distribution of duration will be explored against the missingness of cause and month.
+
+#### Cause Missingness
+
+Null Hypothesis: The distribution of cause category is the same when demand loss is missing vs not missing. 
+
+Alternative Hypothesis: The distribution of cause category is different when demand loss is missing vs not missing. 
+
+<iframe
+  src="assets/cause_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Plotting the distribution of cause category against demand loss missingness indicates that there is a difference in distributions. This is tested by a permutation test using TVD. The observed TVD was 0.44, which had a p-value of about 0. Because the p-value is below any significant level threshold that is commonly used, we reject the null hypothesis. There is significant evidence that the distribution of cause category is not the same when demand loss is missing vs not missing.
+
+Below is the graph of the distribution of TVDs from the permutation tests.
+
+<iframe
+  src="assets/cause_missingness_distribution.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### Month Missingness
+
+Null Hypothesis: The distribution of month is the same when demand loss is missing vs not missing. 
+
+Alternative Hypothesis: The distribution of month is different when demand loss is missing vs not missing.
+
+<iframe
+  src="assets/month_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Plotting the distribution of month against demand loss missingness does not indicate a significant difference in distributions. This is tested by a permutation test using TVD. The observed TVD was 0.09, which had a p-value of about .0134. Because the p-value is above any significant level threshold that is commonly used, we fail to reject the null hypothesis. There is not significant evidence that the distribution of month is not the same when demand loss is missing vs not missing.
+
+Below is the graph of the distribution of TVDs from the permutation tests.
+
+<iframe
+  src="assets/month_missingness_distribution.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+## Hypothesis Testing
+
+Using a hypothesis test, I will test if the cause category of an outage has an effect on the electricity demand loss.
+
+Null Hypothesis: On average, the demand loss from severe weather outages is the same as the duration of intentional attack outages.
+
+Alternate Hypothesis: On average, the the demand loss of severe weather outages is greater than the duration of intentional attack outages.
+
+Test Statistic: Difference in means will be used as the test statistic for this hypothesis test. The exact difference in means is severe weather - intentional attack.
+
+The observed test statistic was 3377.78 MW. After conducting a permutation test with 10,000 simulations, the resulting p-value found was 0.0. Because this p-value is below any significant level threshold that is commonly used, we reject the null hypothesis. There is significant evidence that the demand loss from severe weather outages is not the same as the duration of intentional attack outages. Below is the distribution of the simulated difference in means.
+
+<iframe
+  src="assets/hypothesis_test_distribution.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+## Framing a Prediction Problem
+
+My model will try to predict the amount of peak demand loss caused by an outage. This will be a regression problem because the target variable of peak demand loss is a continuous, quantitative variable. Predictor features will be used to influence the magnitude of demand loss.
+
+To evaluate my model performance, I will use RMSE as the metric because it would be in the same units as the target variable, therefore easier to interpret.
+
+At the time of prediction, we would have information about the state, NERC region, climate region, anomaly level, year, month, total sales, total price, total customers, and the urban features. This information can be utilized to predict the amount of peak demand loss caused by the outage.
+
+## Baseline Model
+
+My baseline model is a linear regression model that predicts the amount of peak demand loss by using Year, region information, as well as anomaly level to predict peak demand loss from the outages. This information is open for almost any company within the area and would be useful for determining the severity of outages and the necessity to fix the outage issue.
+
+The feature of anomaly level is quantitative, year is ordinal, and NERC.REGION and CLIMATE.REGION are nominal. Anomaly level was chosen because it provides information about the climate that impacts whether or not the people demand electricity. Year was chosen because it reflects the changes that happen over time. NERC.REGION was chosen because it represents the energy usage policies in the region and CLIMATE.REGION indicates the pattern of demand loss that is typical within a certain region.
+
+This baseline model had an RMSE of 1040 MW, which is not a good model performance because the mean demand loss is 704, meaning that the predictions are extremely far away from the actual values.
