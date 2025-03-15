@@ -125,3 +125,16 @@ As shown above, there is no clear relationship between outage duration and the l
 Grouping data gives information about patterns within groups of data. 
 
 The following data is a grouping by climate region and aggregated by the mean of each feature:
+
+| CLIMATE.REGION     |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |
+|:-------------------|------------------:|-----------------:|---------------------:|
+| West North Central |            796.07 |           391.2  |              66242.4 |
+| Northwest          |           1536.36 |           343.93 |             148472   |
+| Southwest          |           1621.41 |           909.76 |              87815.1 |
+| West               |           1636.31 |           717.93 |             225303   |
+| Southeast          |           2247.66 |           852.36 |             198593   |
+| South              |           2872.45 |           471.65 |             206106   |
+| Central            |           2882.21 |           574.36 |             144269   |
+| Northeast          |           3330.52 |           981.36 |             175359   |
+| East North Central |           5391.4  |           633.9  |             149816   |
+
