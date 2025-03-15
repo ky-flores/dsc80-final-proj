@@ -56,8 +56,6 @@ Step 5: Check the following columns for values of 0 and then replacing them with
 
 The first few rows of the cleaned dataframe are as follows:
 
-<div style="overflow-x: auto; white-space: nowrap;">
-
 |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | OUTAGE.START        | OUTAGE.RESTORATION   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   POPPCT_URBAN |   POPDEN_URBAN |   AREAPCT_URBAN |
 |-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:--------------------|:---------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|---------------:|---------------:|----------------:|
 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |              3060 |              nan |                70000 |          9.28 |       6562520 |           2595696 |          73.27 |           2279 |            2.14 |
@@ -65,8 +63,6 @@ The first few rows of the cleaned dataframe are as follows:
 |   2010 |      10 | Minnesota    | MRO           | East North Central |            -1.5 | severe weather     | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |              3000 |              nan |                70000 |          8.15 |       5222116 |           2586905 |          73.27 |           2279 |            2.14 |
 |   2012 |       6 | Minnesota    | MRO           | East North Central |            -0.1 | severe weather     | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2550 |              nan |                68200 |          9.19 |       5787064 |           2606813 |          73.27 |           2279 |            2.14 |
 |   2015 |       7 | Minnesota    | MRO           | East North Central |             1.2 | severe weather     | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 |              250 |               250000 |         10.43 |       5970339 |           2673531 |          73.27 |           2279 |            2.14 |
-
-</div>
 
 ### Exploratory Data Analysis
 
@@ -267,4 +263,6 @@ The improved model had an RMSE of 950 MW, which is a 89 MW improvement from the 
 
 ## Fairness Analysis
 
-Testing the fairness of the model 
+Testing the fairness of the model will be done using month. The two groups will be the first half of the year (Months 1-6) and the second half of the year (Months 7-12).
+
+Null Hypothesis: 
