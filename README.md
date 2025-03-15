@@ -56,7 +56,7 @@ Step 5: Check the following columns for values of 0 and then replacing them with
 
 The first few rows of the cleaned dataframe are as follows:
 
-<div style="overflow-x: auto;">
+<div style="overflow-x: auto; white-space: nowrap;">
 
 |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | OUTAGE.START        | OUTAGE.RESTORATION   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   POPPCT_URBAN |   POPDEN_URBAN |   AREAPCT_URBAN |
 |-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:--------------------|:---------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|---------------:|---------------:|----------------:|
