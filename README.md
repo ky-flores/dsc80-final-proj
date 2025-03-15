@@ -214,7 +214,7 @@ Below is the graph of the distribution of TVDs from the permutation tests.
 
 ## Hypothesis Testing
 
-Using a hypothesis test, I will test if the cause category of an outage has an effect on the electricity demand loss.
+Using a hypothesis test with a significance level of 0.05, I will test if the cause category of an outage has an effect on the electricity demand loss.
 
 Null Hypothesis: On average, the demand loss from severe weather outages is the same as the duration of intentional attack outages.
 
@@ -222,7 +222,7 @@ Alternate Hypothesis: On average, the the demand loss of severe weather outages 
 
 Test Statistic: Difference in means will be used as the test statistic for this hypothesis test. The exact difference in means is severe weather - intentional attack.
 
-The observed test statistic was 3377.78 MW. After conducting a permutation test with 10,000 simulations, the resulting p-value found was 0.0. Because this p-value is below any significant level threshold that is commonly used, we reject the null hypothesis. There is significant evidence that the demand loss from severe weather outages is not the same as the duration of intentional attack outages. Below is the distribution of the simulated difference in means.
+The observed test statistic was 3377.78 MW. After conducting a permutation test with 10,000 simulations, the resulting p-value found was 0.0. Because this p-value is below the significant level threshold, we reject the null hypothesis. There is significant evidence that the demand loss from severe weather outages is not the same as the duration of intentional attack outages. Below is the distribution of the simulated difference in means.
 
 <iframe
   src="assets/hypothesis_test_distribution.html"
@@ -263,6 +263,12 @@ The improved model had an RMSE of 950 MW, which is a 89 MW improvement from the 
 
 ## Fairness Analysis
 
-Testing the fairness of the model will be done using month. The two groups will be the first half of the year (Months 1-6) and the second half of the year (Months 7-12).
+Testing the fairness of the model will be done using month with a significance level of 0.05. The two groups will be the first half of the year (Months 1-6) and the second half of the year (Months 7-12). This feature was chosen because the month could 
 
-Null Hypothesis: 
+Null Hypothesis: The model is fair. Its RMSE for the first half of the year and the second half of the year are roughly the same, and any differences are due to random chance. 
+
+Alternative Hypothesis: Our model is unfair. Its RMSE for the first half of the year and the second half of the year are different.
+
+Absolute difference in RMSE will be the test statistic of choice because it uses the metric used for model prediction and it avoids directional bias. It also indicates how different one model is from the other.
+
+The observed absolute difference in RMSE was 194.11. This difference had a p-value of about 0.772, which is above the significance level, so we fail to reject the null hypothesis. There is not significant evidence that the model is unfair for different halves of the year. 
