@@ -56,6 +56,8 @@ Step 5: Check the following columns for values of 0 and then replacing them with
 
 The first few rows of the cleaned dataframe are as follows:
 
+<div style="overflow-x: auto;">
+
 |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | OUTAGE.START        | OUTAGE.RESTORATION   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   POPPCT_URBAN |   POPDEN_URBAN |   AREAPCT_URBAN |
 |-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:--------------------|:---------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|---------------:|---------------:|----------------:|
 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |              3060 |              nan |                70000 |          9.28 |       6562520 |           2595696 |          73.27 |           2279 |            2.14 |
@@ -64,7 +66,7 @@ The first few rows of the cleaned dataframe are as follows:
 |   2012 |       6 | Minnesota    | MRO           | East North Central |            -0.1 | severe weather     | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2550 |              nan |                68200 |          9.19 |       5787064 |           2606813 |          73.27 |           2279 |            2.14 |
 |   2015 |       7 | Minnesota    | MRO           | East North Central |             1.2 | severe weather     | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 |              250 |               250000 |         10.43 |       5970339 |           2673531 |          73.27 |           2279 |            2.14 |
 
-
+</div>
 
 ### Exploratory Data Analysis
 
@@ -247,4 +249,8 @@ My baseline model is a linear regression model that predicts the amount of peak 
 
 The feature of anomaly level is quantitative, year is ordinal, and NERC.REGION and CLIMATE.REGION are nominal. Anomaly level was chosen because it provides information about the climate that impacts whether or not the people demand electricity. Year was chosen because it reflects the changes that happen over time. NERC.REGION was chosen because it represents the energy usage policies in the region and CLIMATE.REGION indicates the pattern of demand loss that is typical within a certain region.
 
-This baseline model had an RMSE of 1040 MW, which is not a good model performance because the mean demand loss is 704, meaning that the predictions are extremely far away from the actual values.
+This baseline model had an RMSE of 1040 MW, which is not a good model performance because the mean demand loss is 704 MW, meaning that the predictions are extremely far away from the actual values.
+
+## Final Model
+
+The final model was a Ridge regression model that had the previous features with the addition of the ordinal month feature and the quantitative total.sales feature. 
