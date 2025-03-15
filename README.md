@@ -271,4 +271,11 @@ Alternative Hypothesis: Our model is unfair. Its RMSE for the first half of the 
 
 Absolute difference in RMSE will be the test statistic of choice because it uses the metric used for model prediction and it avoids directional bias. It also indicates how different one model is from the other.
 
-The observed absolute difference in RMSE was 194.11. This difference had a p-value of about 0.772, which is above the significance level, so we fail to reject the null hypothesis. There is not significant evidence that the model is unfair for different halves of the year. 
+The observed absolute difference in RMSE was 194.11. This difference had a p-value of about 0.724, which is above the significance level, so we fail to reject the null hypothesis. There is not significant evidence that the model is unfair for different halves of the year. Below is the distribution of the test statistics.
+
+<iframe
+  src="assets/rmse_difference_distribution.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
