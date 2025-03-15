@@ -253,4 +253,18 @@ This baseline model had an RMSE of 1040 MW, which is not a good model performanc
 
 ## Final Model
 
-The final model was a Ridge regression model that had the previous features with the addition of the ordinal month feature and the quantitative total.sales feature. 
+The final model was a Ridge regression model that had the previous features with the addition of the ordinal month feature and the quantitative total.sales feature. Month was added as a predictor feature because it adds information about seasonal changes to demand that year does not quite capture. Total.sales was added because it would indicate the amount of electricity that is used during the time, which has a relationship with the amount of electricity that is demanded at any moment in time. 
+
+Ridge regression was chosen because Ridge performs better than linear regression when there are more predictive features. 
+
+The best hyperparameters found were found using GridSearchCv and are as follows::
+
+Alpha: 300000  
+Solver: Auto  
+Polynomial Degree: 1  
+
+The improved model had an RMSE of 950 MW, which is a 89 MW improvement from the baseline model. This is a large improvement, but still indicates that the model does not predict demand loss well.
+
+## Fairness Analysis
+
+Testing the fairness of the model 
